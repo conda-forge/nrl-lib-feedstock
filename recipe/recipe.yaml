@@ -13,7 +13,7 @@ source:
 build:
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
@@ -45,14 +45,34 @@ tests:
 
 about:
   homepage: https://epic.earthscope.org/content/software-resources
-  summary: Library to access the NRL v2 web service
-  description: |
-    nrl-lib is a Python library that provides access to the Nominal
-    Response Library (NRL) v2 web service, with catalog, combine and
-    prefix-lookup queries. The package is imported as `nrl`.
+  repository: https://gitlab.com/earthscope/public/epic/nrl-lib
+  documentation: https://gitlab.com/earthscope/public/epic/nrl-lib/-/blob/main/README.md
   license: GPL-3.0-or-later
   license_file: LICENSE
-  repository: https://gitlab.com/earthscope/public/epic/nrl-lib
+  summary: Python client for the EarthScope Nominal Response Library (NRL) v2 web service
+  description: |
+    nrl-lib is a Python client for the Nominal Response Library (NRL) v2
+    web service run by EarthScope. The NRL is a curated collection of
+    instrument responses for seismic sensors and dataloggers. nrl-lib lets
+    you query it from Python instead of building service URLs by hand.
+
+    Supported queries:
+
+    - catalog: list instrument types, manufacturers, models and
+      configuration parameters available in the NRL (XML, JSON or text)
+    - combine: build complete sensor + datalogger instrument responses,
+      optionally stamped with network/station/location/channel epoch
+      information, as StationXML, StationXML-Response or RESP (single
+      files or .zip bundles)
+    - prefix-lookup: retrieve the table of instrument-configuration
+      prefixes with their names and associated logic-tree questions
+
+    Responses can be returned in memory or written to files, with
+    configurable error handling and logging. It has no CLI or GUI and is
+    meant to be used as a library dependency.
+
+    Install: conda install -c conda-forge nrl-lib
+    Import:  from nrl.NRLQuery import NRLQuery
 
 extra:
   recipe-maintainers:
