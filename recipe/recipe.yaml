@@ -1,19 +1,19 @@
 context:
   name: nrl-lib
-  version: "1.0.0"
+  version: "1.0.1"
 
 package:
   name: ${{ name }}
   version: ${{ version }}
 
 source:
-  url: https://gitlab.com/earthscope/public/epic/nrl-lib/-/archive/v${{ version }}/nrl-lib-v${{ version }}.tar.gz
-  sha256: fd0c8219f93aa4f4d9a53fd0708612929b9cf2dd0e44e339cd0d7ed0789e46ca
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/nrl_lib-${{ version }}.tar.gz
+  sha256: 77cac5713cb432d5d73b16b2cb53852316d24534ca97a349cf6ffd5710d275fd
 
 build:
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
@@ -45,8 +45,8 @@ tests:
 
 about:
   homepage: https://epic.earthscope.org/content/software-resources
-  repository: https://gitlab.com/earthscope/public/epic/nrl-lib
-  documentation: https://gitlab.com/earthscope/public/epic/nrl-lib/-/blob/main/README.md
+  repository: https://github.com/EarthScope/nrl-lib
+  documentation: https://github.com/EarthScope/nrl-lib/blob/main/README.md
   license: GPL-3.0-or-later
   license_file: LICENSE
   summary: Python client for the EarthScope Nominal Response Library (NRL) v2 web service
@@ -72,6 +72,7 @@ about:
     meant to be used as a library dependency.
 
     Install: conda install -c conda-forge nrl-lib
+             (or pip install nrl-lib)
     Import:  from nrl.NRLQuery import NRLQuery
 
 extra:
